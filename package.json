@@ -13,7 +13,13 @@
     "debug": "node scripts/debugDemo.js",
     "view-data": "ls -la data/ && echo '\n📊 Data Summary:' && head -10 data/historical_data.csv",
     "retrain": "node -e \"const ML = require('./src/WorkerAssignmentML'); const data = require('./data/historical_data.json'); const ml = new ML(); ml.addHistoricalData(data.historicalData); ml.trainIfNeeded(true);\"",
-    "clean-models": "rm -f data/trained_model.json && echo '🧹 Cleaned saved models'"
+    "clean-models": "rm -f data/trained_model.json && echo '🧹 Cleaned saved models'",
+    "mcp-server": "node src/mcp/server.js",
+    "mcp-demo": "node src/mcp/demo.js",
+    "mcp-test": "node src/mcp/test-client.js",
+    "ai-mcp": "node src/mcp/ai-server.js",
+    "ai-demo": "node src/mcp/ai-demo.js",
+    "compare-mcp": "echo '🔄 Starting comparison demo...' && npm run ai-demo"
   },
   "keywords": [
     "machine-learning",
@@ -30,7 +36,11 @@
     "ml-knn": "^3.0.0",
     "lodash": "^4.17.21",
     "csv-parser": "^3.0.0",
-    "csv-writer": "^1.6.0"
+    "csv-writer": "^1.6.0",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ws": "^8.18.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

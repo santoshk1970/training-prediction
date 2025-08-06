@@ -83,7 +83,7 @@ npm run export-csv
 npm run view-data
 ```
 
-### 7. Debug Mode - See How Decisions Are Made
+### 8. Debug Mode - See How Decisions Are Made
 
 ```bash
 npm run debug
@@ -94,6 +94,92 @@ This shows detailed logs of:
 - Why certain workers are rejected or selected  
 - Efficiency calculations and ranking process
 - Confidence scoring methodology
+
+## 🔌 Model Context Protocol (MCP) Integration
+
+This project now includes **Model Context Protocol (MCP)** support, allowing external AI clients to interact with the Worker Assignment ML system through standardized protocols.
+
+### MCP Features
+
+- **🤖 AI-Native Interface**: Direct integration with AI assistants and agents
+- **🛠️ Rich Tool Set**: 5 powerful tools for ML operations
+- **📊 Real-time Analytics**: Live system monitoring and performance metrics
+- **📋 Resource Access**: Structured data access through MCP resources
+- **🔍 Interactive Predictions**: AI can make and analyze worker predictions
+
+### Available MCP Tools
+
+1. **`predict_worker_assignment`** - Get optimal worker recommendations
+2. **`get_worker_performance`** - Analyze individual worker statistics  
+3. **`get_system_analytics`** - Comprehensive system insights
+4. **`add_training_data`** - Improve model with new data
+5. **`retrain_model`** - Update ML model with latest data
+
+### Available MCP Resources
+
+- **Analytics Dashboard** (`worker-assignment://analytics/dashboard`)
+- **Training Data Summary** (`worker-assignment://data/training-summary`)  
+- **Model Status** (`worker-assignment://model/status`)
+
+### Quick MCP Setup
+
+1. **Start the MCP Server**:
+```bash
+npm run mcp-server
+```
+
+2. **Run Interactive Demo**:
+```bash
+npm run mcp-demo
+```
+
+3. **Test All Features**:
+```bash
+npm run mcp-test
+```
+
+### MCP Client Configuration
+
+Add this to your MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "worker-assignment-ml": {
+      "command": "node",
+      "args": ["src/mcp/server.js"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}
+```
+
+### Example MCP Interactions
+
+**Get a Worker Prediction:**
+```
+Tool: predict_worker_assignment
+Arguments: {"machineId": 3, "complexity": 4, "includeAnalysis": true}
+```
+
+**Analyze Worker Performance:**
+```
+Tool: get_worker_performance  
+Arguments: {"workerId": "worker_5", "machineId": 2}
+```
+
+**Add New Training Data:**
+```
+Tool: add_training_data
+Arguments: {
+  "data": [
+    {"workerId": "worker_new", "machineId": 1, "timeMinutes": 32.5, "qualityScore": 94.2}
+  ],
+  "retrain": true
+}
+```
 
 ## 📊 Sample Data Structure
 
